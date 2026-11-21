@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment 1 - Conversion</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="../addu-logo.png" alt="AdDU Logo" width="100">
+
+        <h1>Assignment 1</h1>
+        <p>Conversion Program</p>
+        <p>Hwakinn Lio M Ramirez</p>
+        <p>BS Computer Science 1A</p>
+    </header>
+
+    <hr>
+
+    <main>
+
+        <h2>Celsius to Fahrenheit</h2>
+
+        <input type="number" id="celsius" placeholder="Enter Celsius">
+
+        <button onclick="celsiusToFahrenheit()">Convert</button>
+
+        <p id="result1"></p>
+
+        <hr>
+
+        <h2>Fahrenheit to Celsius</h2>
+
+        <input type="number" id="fahrenheit" placeholder="Enter Fahrenheit">
+
+        <button onclick="fahrenheitToCelsius()">Convert</button>
+
+        <p id="result2"></p>
+
+        <hr>
+
+        <h2>Meters to Feet</h2>
+
+        <input type="number" id="meters" placeholder="Enter Meters">
+
+        <button onclick="metersToFeet()">Convert</button>
+
+        <p id="result3"></p>
+
+        <hr>
+
+        <h2>Feet to Meters</h2>
+
+        <input type="number" id="feet" placeholder="Enter Feet">
+
+        <button onclick="feetToMeters()">Convert</button>
+
+        <p id="result4"></p>
+
+        <hr>
+
+        <p><a href="../index.html">Return to Homepage</a></p>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>© 2026 Hwakinn Lio M Ramirez</p>
+        <p>Ateneo de Davao University</p>
+    </footer>
+
+    <script>
+
+        function celsiusToFahrenheit() {
+            let celsius = Number(document.getElementById("celsius").value);
+            let fahrenheit = (celsius * 9/5) + 32;
+
+            document.getElementById("result1").innerHTML =
+                fahrenheit.toFixed(2) + " °F";
+        }
+
+        function fahrenheitToCelsius() {
+            let fahrenheit = Number(document.getElementById("fahrenheit").value);
+            let celsius = (fahrenheit - 32) * 5/9;
+
+            document.getElementById("result2").innerHTML =
+                celsius.toFixed(2) + " °C";
+        }
+
+        function metersToFeet() {
+            let meters = Number(document.getElementById("meters").value);
+            let feet = meters * 3.28084;
+
+            document.getElementById("result3").innerHTML =
+                feet.toFixed(2) + " ft";
+        }
+
+        function feetToMeters() {
+            let feet = Number(document.getElementById("feet").value);
+            let meters = feet / 3.28084;
+
+            document.getElementById("result4").innerHTML =
+                meters.toFixed(2) + " m";
+        }
+
+    </script>
+
+</body>
+</html>
