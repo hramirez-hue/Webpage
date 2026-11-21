@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programming Assignments | Hwakinn Lio M Ramirez</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      color: #222;
+      background: #f5f5f5;
+      line-height: 1.5;
+    }
+
+    header {
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 20px;
+    }
+
+    .header-content {
+      max-width: 950px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .logo {
+      width: 75px;
+      height: 75px;
+      object-fit: contain;
+    }
+
+    .logo-placeholder {
+      width: 75px;
+      height: 75px;
+      border: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #555;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+
+    h1 { margin: 0 0 4px; font-size: 25px; }
+    .student-info { margin: 0; color: #555; }
+
+    main {
+      max-width: 950px;
+      margin: 25px auto;
+      padding: 0 18px;
+    }
+
+    .home, .assignment {
+      background: white;
+      border: 1px solid #ddd;
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    h2 { margin-top: 0; }
+    .menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .menu button, .action-button {
+      background: #f0f0f0;
+      border: 1px solid #bbb;
+      padding: 12px;
+      font-size: 15px;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .menu button:hover, .action-button:hover {
+      background: #e5e5e5;
+    }
+
+    .menu button.active {
+      background: #e8eef8;
+      border-color: #365b91;
+    }
+
+    .assignment { display: none; }
+    .assignment.active { display: block; }
+
+    label {
+      display: block;
+      margin: 12px 0 5px;
+    }
+
+    input, select {
+      padding: 9px;
+      width: 100%;
+      max-width: 350px;
+      border: 1px solid #aaa;
+      font: inherit;
+    }
+
+    .action-button {
+      margin-top: 14px;
+      background: #eee;
+      text-align: center;
+    }
+
+    .result {
+      margin-top: 14px;
+      padding: 12px;
+      background: #f7f7f7;
+      border: 1px solid #ddd;
+      min-height: 22px;
+    }
+
+    .back-button {
+      margin-bottom: 15px;
+      border: 0;
+      background: none;
+      color: #234d80;
+      text-decoration: underline;
+      cursor: pointer;
+      padding: 0;
+      font: inherit;
+    }
+
+    footer {
+      text-align: center;
+      color: #666;
+      padding: 20px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 520px) {
+      .header-content { align-items: flex-start; }
+      .logo, .logo-placeholder { width: 58px; height: 58px; }
+      h1 { font-size: 20px; }
+      .home, .assignment { padding: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-content">
+    <!-- Replace this placeholder with the official AdDU logo image if available. -->
+    <div class="logo-placeholder" id="logoPlaceholder">AdDU<br>LOGO</div>
+    <div>
+      <h1>Programming Assignments</h1>
+      <p class="student-info">Hwakinn Lio M Ramirez | BSCS 1A</p>
+      <p class="student-info">Ateneo de Davao University</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="home" id="homePage">
+    <h2>Home</h2>
+    <p>Welcome to my programming assignments website. Select an assignment below to view and use the program.</p>
+
+    <div class="menu">
+      <button onclick="showAssignment('conversion', this)">Assignment 1: Conversion</button>
+      <button onclick="showAssignment('tax', this)">Assignment 2: Income Tax Calculator</button>
+      <button onclick="showAssignment('numbers', this)">Assignment 3: First N Natural Numbers</button>
+      <button onclick="showAssignment('payroll', this)">Assignment 4: Simple Payroll</button>
+    </div>
+  </section>
+
+  <section class="assignment" id="conversion">
+    <button class="back-button" onclick="showHome()">← Back to Home</button>
+    <h2>Assignment #1 - Conversion</h2>
+    <p>Convert Celsius to Fahrenheit, Fahrenheit to Celsius, meters to feet, or feet to meters.</p>
+    <label for="conversionType">Choose conversion:</label>
+    <select id="conversionType">
+      <option value="ctf">Celsius to Fahrenheit</option>
+      <option value="ftc">Fahrenheit to Celsius</option>
+      <option value="mtf">Meters to Feet</option>
+      <option value="ftm">Feet to Meters</option>
+    </select>
+    <label for="conversionValue">Enter value:</label>
+    <input id="conversionValue" type="number" step="any">
+    <br><button class="action-button" onclick="convert()">Convert</button>
+    <div class="result" id="conversionResult">Result will appear here.</div>
+  </section>
+
+  <section class="assignment" id="tax">
+    <button class="back-button" onclick="showHome()">← Back to Home</button>
+    <h2>Assignment #2 - Income Tax Calculator</h2>
+    <p>Calculate estimated Philippine annual income tax based on taxable income.</p>
+    <label for="annualIncome">Annual taxable income (₱):</label>
+    <input id="annualIncome" type="number" min="0" step="0.01">
+    <br><button class="action-button" onclick="calculateTax()">Calculate Tax</button>
+    <div class="result" id="taxResult">Result will appear here.</div>
+    <p><small>Note: This is a simplified estimate using the Philippine TRAIN graduated tax rates for 2023 onward. It assumes the entered amount is taxable income.</small></p>
+  </section>
+
+  <section class="assignment" id="numbers">
+    <button class="back-button" onclick="showHome()">← Back to Home</button>
+    <h2>Assignment #3 - First N Natural Numbers</h2>
+    <p>Find the factorial using a while loop, sum using a do-while loop, and average using a for loop.</p>
+    <label for="numberN">Enter N (1 to 170):</label>
+    <input id="numberN" type="number" min="1" max="170" step="1">
+    <br><button class="action-button" onclick="calculateNumbers()">Calculate</button>
+    <div class="result" id="numbersResult">Results will appear here.</div>
+  </section>
+
+  <section class="assignment" id="payroll">
+    <button class="back-button" onclick="showHome()">← Back to Home</button>
+    <h2>Assignment #4 - Simple Payroll</h2>
+    <p>Calculate an employee's regular pay, overtime pay, deductions, and net pay.</p>
+    <label for="employeeName">Employee name:</label>
+    <input id="employeeName" type="text">
+    <label for="hoursWorked">Regular hours worked:</label>
+    <input id="hoursWorked" type="number" min="0" step="any">
+    <label for="hourlyRate">Hourly rate (₱):</label>
+    <input id="hourlyRate" type="number" min="0" step="any">
+    <label for="overtimeHours">Overtime hours:</label>
+    <input id="overtimeHours" type="number" min="0" step="any" value="0">
+    <label for="deductions">Other deductions (₱):</label>
+    <input id="deductions" type="number" min="0" step="any" value="0">
+    <br><button class="action-button" onclick="calculatePayroll()">Calculate Payroll</button>
+    <div class="result" id="payrollResult">Payroll result will appear here.</div>
+    <p><small>Overtime is computed at 1.25 times the hourly rate. Adjust this if your instructor gave a different rate.</small></p>
+  </section>
+</main>
+
+<footer>Programming Assignments | BSCS 1A</footer>
+
+<script>
+  function showAssignment(id, button) {
+    document.getElementById('homePage').style.display = 'none';
+    document.querySelectorAll('.assignment').forEach(section => section.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function showHome() {
+    document.querySelectorAll('.assignment').forEach(section => section.classList.remove('active'));
+    document.getElementById('homePage').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  function convert() {
+    const raw = document.getElementById('conversionValue').value;
+    const value = Number(raw);
+    const type = document.getElementById('conversionType').value;
+    const output = document.getElementById('conversionResult');
+
+    if (raw === '' || !Number.isFinite(value)) {
+      output.textContent = 'Please enter a valid number.';
+      return;
+    }
+
+    let answer, unit;
+    if (type === 'ctf') { answer = value * 9 / 5 + 32; unit = '°F'; }
+    else if (type === 'ftc') { answer = (value - 32) * 5 / 9; unit = '°C'; }
+    else if (type === 'mtf') { answer = value * 3.28084; unit = 'feet'; }
+    else { answer = value / 3.28084; unit = 'meters'; }
+
+    output.textContent = 'Result: ' + answer.toFixed(4) + ' ' + unit;
+  }
+
+  function calculateTax() {
+    const raw = document.getElementById('annualIncome').value;
+    const income = Number(raw);
+    const output = document.getElementById('taxResult');
+
+    if (raw === '' || !Number.isFinite(income) || income < 0) {
+      output.textContent = 'Please enter a valid non-negative income.';
+      return;
+    }
+
+    let tax;
+    if (income <= 250000) tax = 0;
+    else if (income <= 400000) tax = (income - 250000) * 0.15;
+    else if (income <= 800000) tax = 22500 + (income - 400000) * 0.20;
+    else if (income <= 2000000) tax = 102500 + (income - 800000) * 0.25;
+    else if (income <= 8000000) tax = 402500 + (income - 2000000) * 0.30;
+    else tax = 2202500 + (income - 8000000) * 0.35;
+
+    output.textContent = 'Estimated annual income tax: ₱' + tax.toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  }
+
+  function calculateNumbers() {
+    const raw = document.getElementById('numberN').value;
+    const n = Number(raw);
+    const output = document.getElementById('numbersResult');
+
+    if (raw === '' || !Number.isInteger(n) || n < 1 || n > 170) {
+      output.textContent = 'Please enter a whole number from 1 to 170.';
+      return;
+    }
+
+    let factorial = 1;
+    let i = 1;
+    while (i <= n) {
+      factorial *= i;
+      i++;
+    }
+
+    let sum = 0;
+    let j = 1;
+    do {
+      sum += j;
+      j++;
+    } while (j <= n);
+
+    let total = 0;
+    for (let k = 1; k <= n; k++) {
+      total += k;
+    }
+    const average = total / n;
+
+    output.innerHTML = 'Factorial (' + n + '!): ' + factorial.toLocaleString('en-US') +
+      '<br>Sum (1 to ' + n + '): ' + sum.toLocaleString('en-US') +
+      '<br>Average: ' + average.toFixed(2);
+  }
+
+  function calculatePayroll() {
+    const name = document.getElementById('employeeName').value.trim() || 'Employee';
+    const hoursRaw = document.getElementById('hoursWorked').value;
+    const rateRaw = document.getElementById('hourlyRate').value;
+    const overtimeRaw = document.getElementById('overtimeHours').value;
+    const deductionsRaw = document.getElementById('deductions').value;
+    const output = document.getElementById('payrollResult');
+
+    const values = [hoursRaw, rateRaw, overtimeRaw, deductionsRaw];
+    if (values.some(value => value === '' || !Number.isFinite(Number(value)) || Number(value) < 0)) {
+      output.textContent = 'Please enter valid non-negative values in all payroll fields.';
+      return;
+    }
+
+    const hours = Number(hoursRaw);
+    const rate = Number(rateRaw);
+    const overtime = Number(overtimeRaw);
+    const deductions = Number(deductionsRaw);
+    const regularPay = hours * rate;
+    const overtimePay = overtime * rate * 1.25;
+    const grossPay = regularPay + overtimePay;
+    const netPay = grossPay - deductions;
+    const formatMoney = amount => '₱' + amount.toLocaleString('en-PH', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+
+    output.innerHTML = 'Employee: ' + escapeText(name) +
+      '<br>Regular pay: ' + formatMoney(regularPay) +
+      '<br>Overtime pay: ' + formatMoney(overtimePay) +
+      '<br>Gross pay: ' + formatMoney(grossPay) +
+      '<br>Deductions: ' + formatMoney(deductions) +
+      '<br><strong>Net pay: ' + formatMoney(netPay) + '</strong>';
+  }
+
+  function escapeText(text) {
+    return text.replace(/[&<>"']/g, character => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[character]);
+  }
+</script>
+</body>
+</html>
