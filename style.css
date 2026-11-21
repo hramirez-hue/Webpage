@@ -29,3 +29,26 @@ a {
 li {
     margin: 10px 0;
 }
+
+
+.assignment-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    margin: 20px auto;
+}
+
+.assignment-buttons a {
+    display: block;
+    padding: 12px;
+    background-color: #003366;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.assignment-buttons a:hover {
+    background-color: #00509e;
+}
