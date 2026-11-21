@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment 3 - Loops</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="../addu-logo.png" alt="AdDU Logo" width="100">
+
+        <h1>Assignment 3</h1>
+        <p>Factorial, Sum, and Average</p>
+        <p>Hwakinn Lio M Ramirez</p>
+        <p>BS Computer Science 1A</p>
+    </header>
+
+    <hr>
+
+    <main>
+
+        <h2>Factorial Using While Loop</h2>
+
+        <label>Enter a number:</label>
+        <br><br>
+
+        <input type="number" id="factorialInput" placeholder="Enter number" min="0">
+
+        <button onclick="calculateFactorial()">Calculate Factorial</button>
+
+        <p id="factorialResult"></p>
+
+        <hr>
+
+        <h2>Sum Using Do While Loop</h2>
+
+        <label>Enter a number:</label>
+        <br><br>
+
+        <input type="number" id="sumInput" placeholder="Enter number" min="1">
+
+        <button onclick="calculateSum()">Calculate Sum</button>
+
+        <p id="sumResult"></p>
+
+        <hr>
+
+        <h2>Average Using For Loop</h2>
+
+        <label>Enter a number:</label>
+        <br><br>
+
+        <input type="number" id="averageInput" placeholder="Enter number" min="1">
+
+        <button onclick="calculateAverage()">Calculate Average</button>
+
+        <p id="averageResult"></p>
+
+        <hr>
+
+        <p><a href="../index.html">Return to Homepage</a></p>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>© 2026 Hwakinn Lio M Ramirez</p>
+        <p>Ateneo de Davao University</p>
+    </footer>
+
+    <script>
+
+        function calculateFactorial() {
+
+            let n = Number(document.getElementById("factorialInput").value);
+
+            if (document.getElementById("factorialInput").value === "" ||
+                !Number.isInteger(n) || n < 0 || n > 170) {
+
+                document.getElementById("factorialResult").innerHTML =
+                    "Please enter a whole number from 0 to 170.";
+
+                return;
+            }
+
+            let factorial = 1;
+            let i = 1;
+
+            while (i <= n) {
+                factorial = factorial * i;
+                i++;
+            }
+
+            document.getElementById("factorialResult").innerHTML =
+                "Factorial: " + factorial;
+        }
+
+
+        function calculateSum() {
+
+            let n = Number(document.getElementById("sumInput").value);
+
+            if (document.getElementById("sumInput").value === "" ||
+                !Number.isInteger(n) || n < 1) {
+
+                document.getElementById("sumResult").innerHTML =
+                    "Please enter a positive whole number.";
+
+                return;
+            }
+
+            let sum = 0;
+            let i = 1;
+
+            do {
+                sum = sum + i;
+                i++;
+            } while (i <= n);
+
+            document.getElementById("sumResult").innerHTML =
+                "Sum: " + sum;
+        }
+
+
+        function calculateAverage() {
+
+            let n = Number(document.getElementById("averageInput").value);
+
+            if (document.getElementById("averageInput").value === "" ||
+                !Number.isInteger(n) || n < 1) {
+
+                document.getElementById("averageResult").innerHTML =
+                    "Please enter a positive whole number.";
+
+                return;
+            }
+
+            let sum = 0;
+
+            for (let i = 1; i <= n; i++) {
+                sum = sum + i;
+            }
+
+            let average = sum / n;
+
+            document.getElementById("averageResult").innerHTML =
+                "Average: " + average.toFixed(2);
+        }
+
+    </script>
+
+</body>
+</html>
