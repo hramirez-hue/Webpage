@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Payroll System</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <img src="../addu-logo.png" alt="AdDU Logo" width="100">
+
+    <h1>Simple Payroll System</h1>
+    <p>Hwakinn Lio M Ramirez | BSCS 1A</p>
+
+    <h2>Add Employee</h2>
+
+    <label>Employee Name:</label>
+    <input type="text" id="name">
+
+    <label>Days Worked:</label>
+    <input type="number" id="days">
+
+    <label>Daily Rate:</label>
+    <input type="number" id="rate">
+
+    <label>Deduction Amount:</label>
+    <input type="number" id="deduction">
+
+    <button onclick="addEmployee()">Add Employee</button>
+
+    <h2>Payroll List</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Employee Name</th>
+                <th>Days Worked</th>
+                <th>Daily Rate</th>
+                <th>Gross Pay</th>
+                <th>Deduction Amount</th>
+                <th>Net Pay</th>
+            </tr>
+        </thead>
+        <tbody id="payrollTable"></tbody>
+    </table>
+
+    <h2>Delete Employee</h2>
+
+    <label>Line Number:</label>
+    <input type="number" id="deleteNumber">
+
+    <button onclick="deleteEmployee()">Delete Employee</button>
+
+    <p><a href="../index.html">Back to Home</a></p>
+
+    <script>
+        let employees = [];
+
+        function addEmployee() {
+            let name = document.getElementById("name").value.trim();
+            let days = Number(document.getElementById("days").value);
+            let rate = Number(document.getElementById("rate").value);
+            let deduction = Number(document.getElementById("deduction").value);
+
+            if (name === "" || document.getElementById("days").value === "" ||
+                document.getElementById("rate").value === "" ||
+                document.getElementById("deduction").value === "" ||
+                days < 0 || rate < 0 || deduction < 0) {
+                alert("Please enter valid employee information.");
+                return;
+            }
+
+            let grossPay = days * rate;
+            let netPay = grossPay - deduction;
+
+            employees.push({
+                name: name,
+                days: days,
+                rate: rate,
+                grossPay: grossPay,
+                deduction: deduction,
+                netPay: netPay
+            });
+
+            displayPayroll();
+
+            document.getElementById("name").value = "";
+            document.getElementById("days").value = "";
+            document.getElementById("rate").value = "";
+            document.getElementById("deduction").value = "";
+        }
+
+        function displayPayroll() {
+            let table = document.getElementById("payrollTable");
+            table.innerHTML = "";
+
+            for (let i = 0; i < employees.length; i++) {
+                let employee = employees[i];
+                let row = table.insertRow();
+
+                let values = [
+                    i + 1,
+                    employee.name,
+                    employee.days,
+                    employee.rate.toFixed(2),
+                    employee.grossPay.toFixed(2),
+                    employee.deduction.toFixed(2),
+                    employee.netPay.toFixed(2)
+                ];
+
+                for (let j = 0; j < values.length; j++) {
+                    let cell = row.insertCell();
+                    cell.textContent = values[j];
+                }
+            }
+        }
+
+        function deleteEmployee() {
+            let number = Number(document.getElementById("deleteNumber").value);
+
+            if (!Number.isInteger(number) || number < 1 || number > employees.length) {
+                alert("Invalid line number.");
+                return;
+            }
+
+            employees.splice(number - 1, 1);
+
+            displayPayroll();
+            document.getElementById("deleteNumber").value = "";
+        }
+    </script>
+
+</body>
+</html>
