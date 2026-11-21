@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assignment 2 - Income Tax Calculator</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="../addu-logo.png" alt="AdDU Logo" width="100">
+
+        <h1>Assignment 2</h1>
+        <p>Income Tax Calculator</p>
+        <p>Hwakinn Lio M Ramirez</p>
+        <p>BS Computer Science 1A</p>
+    </header>
+
+    <hr>
+
+    <main>
+
+        <h2>Income Tax Calculator</h2>
+
+        <label>Net Taxable Income:</label>
+        <br><br>
+
+        <input type="number" id="income" placeholder="Enter taxable income">
+
+        <button onclick="computeTax()">Compute Tax</button>
+
+        <h3 id="result"></h3>
+
+        <script>
+
+            function computeTax() {
+
+                let incomeInput = document.getElementById("income").value;
+                let income = Number(incomeInput);
+                let tax = 0;
+
+                if (incomeInput === "" || income < 0 || !Number.isFinite(income)) {
+
+                    document.getElementById("result").innerHTML =
+                        "Please enter a valid taxable income.";
+
+                    return;
+                }
+
+                if (income <= 250000) {
+                    tax = 0;
+                }
+                else if (income <= 400000) {
+                    tax = (income - 250000) * 0.20;
+                }
+                else if (income <= 800000) {
+                    tax = 30000 + (income - 400000) * 0.25;
+                }
+                else if (income <= 2000000) {
+                    tax = 130000 + (income - 800000) * 0.30;
+                }
+                else if (income <= 8000000) {
+                    tax = 490000 + (income - 2000000) * 0.32;
+                }
+                else {
+                    tax = 2410000 + (income - 8000000) * 0.35;
+                }
+
+                document.getElementById("result").innerHTML =
+                    "Income Tax: ₱" + tax.toLocaleString("en-PH", {
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    });
+
+            }
+
+        </script>
+
+        <hr>
+
+        <p><a href="../index.html">Return to Homepage</a></p>
+
+    </main>
+
+    <hr>
+
+    <footer>
+        <p>© 2026 Hwakinn Lio M Ramirez</p>
+        <p>Ateneo de Davao University</p>
+    </footer>
+
+</body>
+</html>
