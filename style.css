@@ -30,13 +30,3 @@ li {
     margin: 10px 0;
 }
 
-
-.assignment-buttons {
-    margin: 20px 0;
-}
-
-.assignment-buttons a {
-    display: block;
-    margin: 10px 0;
-    width: fit-content;
-}
